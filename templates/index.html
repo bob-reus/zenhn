@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: https://ogp.me/ns#">
+<head>
+  <title>zen HN | a calmer way to keep up with current tech</title>
+  <meta charset="UTF-8">
+  <meta name="description"
+  content="Stay updated on current tech and satisfy your intellectual curiosity with zen HN: Hacker News top stories and nothing more.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="index, follow, noarchive, max-snippet:-1">
+
+  <meta property="og:title" content="zen HN | a calmer way to keep up"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:image" content="assets/og-image.png"/>
+  <meta property="og:description"
+  content="Stay updated on current tech and satisfy your intellectual curiosity with zen HN: Hacker News top stories and nothing more."/>
+  <meta property="og:url" content="//zenhn.bobre.us"/>
+
+  <link rel="icon" href="data:;base64,iVBORw0KGgo="/>
+  <link href="{{ app.url_for("static", name="css", filename="pure-min.css") }}" rel="stylesheet"/>
+  <link href="{{ app.url_for("static", name="css", filename="grids-responsive-min.css") }}" rel="stylesheet"/>
+  <link href="{{ app.url_for("static", name="css", filename="styles.css") }}" rel="stylesheet"/>
+</head>
+<body>
+<!-- updated: {{ update_time }} -->
+<div class="container">
+  <div class="pure-g">
+    <div class="pure-u-1">
+      <H1 title="zen HN | a calmer way to keep up">zen HN</H1>
+      <ul>
+        {% for story in stories %}
+        <li>
+          <a href="{{ story.url }}" target="_blank">{{ story.title }}</a>
+          <span class="subtitle">{{ story.domain }}</span>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="pure-g">
+      <div class="pure-u-1 pure-u-md-1-2">
+        <div class="footer-column input-group">
+          <form action="https://hn.algolia.com/" method="get" class="pure-form">
+            <span style="display:inline-block">
+                <input name="query" id="query" placeholder="Search HN" type="text"/><button
+              class="pure-button">go</button>
+                <label hidden="hidden" for="query">Search Hacker News</label>
+            </span>
+          </form>
+        </div>
+      </div>
+      <div class="pure-u-1 pure-u-md-1-2">
+        <div class="footer-column">
+          <a href="https://ko-fi.com/E1E04VLTD" target="_blank">
+            <img height="36" style="border:0;height:36px;"
+                 src="{{ app.url_for("static", name="images", filename="kofi.png") }}"
+                 alt="Buy Me a Coffee at ko-fi.com"/>
+          </a>
+        </div>
+      </div>
+      <div class="pure-u-1">
+        <p>
+          <a href="/feed/">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                 class="feed-icon">
+              <path
+                d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-12.832 20c-1.197 0-2.168-.969-2.168-2.165s.971-2.165 2.168-2.165 2.167.969 2.167 2.165-.97 2.165-2.167 2.165zm5.18 0c-.041-4.029-3.314-7.298-7.348-7.339v-3.207c5.814.041 10.518 4.739 10.561 10.546h-3.213zm5.441 0c-.021-7.063-5.736-12.761-12.789-12.792v-3.208c8.83.031 15.98 7.179 16 16h-3.211z"></path>
+            </svg>
+            Feed</a>
+          | Written by <a href="https://bobre.us" target="_blank">Bob Reus</a>
+          | Inspired by <a href="https://github.com/tomspeak/quiet-hacker-news" target="_blank">quiet-hacker-news</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
