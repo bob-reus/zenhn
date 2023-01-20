@@ -21,13 +21,13 @@
   <link href="{{ app.url_for("static", name="css", filename="styles.css") }}" rel="stylesheet"/>
 </head>
 <body>
-<!-- updated: {{ update_time }} -->
+<!-- updated: {{ issue.update_time }} -->
 <div class="container">
   <div class="pure-g">
     <div class="pure-u-1">
       <H1 title="zen HN | a calmer way to keep up">zen HN</H1>
       <ul>
-        {% for story in stories %}
+        {% for story in issue.stories %}
         <li>
           <a href="{{ story.url }}" target="_blank">{{ story.title }}</a>
           <span class="subtitle">{{ story.domain }}</span>

@@ -1,3 +1,4 @@
+from datetime import datetime
 import json
 
 from models.story import Story
@@ -9,6 +10,7 @@ class Issue:
         self.story_count: int = story_count
         self.story_ids: list[int] = self.get_story_ids()
         self.stories: list = self.get_stories()
+        self.update_time = datetime.now()
 
     def get_story_ids(self) -> list:
         response = httpx.get(
