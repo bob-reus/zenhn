@@ -31,7 +31,7 @@ async def index(request):
 
 @app.get("/feed")
 async def feed(request):
-    return text("feed")
+    return text(issue.feed, content_type="text/xml")
 
 
 @task(timedelta(minutes=30))
