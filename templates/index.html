@@ -29,7 +29,7 @@
       <ul>
         {% for story in issue.stories %}
         <li>
-          <a href="{{ story.url }}" target="_blank">{{ story.title }}</a>
+          <a href="{{ story.url }}" rel="nofollow" target="_blank">{{ story.title }}</a>
           <span class="subtitle">{{ story.domain }}</span>
         </li>
         {% endfor %}
@@ -54,7 +54,7 @@
       </div>
       <div class="pure-u-1 pure-u-md-1-2">
         <div class="footer-column">
-          <a href="https://ko-fi.com/E1E04VLTD" target="_blank">
+          <a href="https://ko-fi.com/bobreus" target="_blank">
             <img height="36" style="border:0;height:36px;"
                  src="{{ app.url_for("static", name="images", filename="kofi.png") }}"
                  alt="Buy Me a Coffee at ko-fi.com"/>
