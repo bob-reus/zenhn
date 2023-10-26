@@ -41,7 +41,7 @@ class Story:
     @staticmethod
     def _generate_domain(url):
         domain = re.search(
-            "(https?:\/\/(www\.)?)(([\w-]+\.)+(\w{0,3}))",
+            "(https?:\/\/(www\.)?)(([\w-]+\.)+(\w+))",
             url,
         ).group(3)
         return domain
