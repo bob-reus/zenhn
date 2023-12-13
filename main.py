@@ -8,7 +8,7 @@ from sanic_scheduler import SanicScheduler, task
 
 from models.issue import Issue
 
-issue = Issue()
+issue = None
 
 app = Sanic("zenHN")
 app.extend(config={"oas": False})
@@ -26,11 +26,16 @@ async def ping(request):
 @app.get("/")
 @app.ext.template("index.html")
 async def index(request):
+    if not issue:
+        return text("ZenHN will be back soon.", status=503)
     return {"app": app, "issue": issue}
 
 
 @app.get("/feed")
 async def feed(request):
+    global issue
+    if not issue:
+        return text("ZenHN will be back soon.", status=503)
     return text(issue.feed, content_type="text/xml")
 
 
