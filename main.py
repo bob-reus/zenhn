@@ -44,8 +44,17 @@ async def create_issue(_):
     global issue
     issue = Issue()
 
+
 def start():
-    app.run(host="0.0.0.0", port=8000)
+    from multiprocessing import freeze_support
+
+    freeze_support()
+
+    import os
+
+    bind = f"unix:{os.environ['HOME']}/tmp/app.sock"
+    app.run(host="127.0.0.1", port=8000, workers=1, single_process=True)
+
 
 if __name__ == "__main__":
     start()
