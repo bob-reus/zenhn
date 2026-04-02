@@ -2,16 +2,17 @@ from datetime import timedelta, time
 
 from sanic import Sanic
 from sanic.response import text
+from sanic_ext import render
 
 # https://github.com/Asmodius/sanic-scheduler
 from sanic_scheduler import SanicScheduler, task
 
 from models.issue import Issue
 
-issue = None
+issue: Issue | None = None
 
 app = Sanic("zenHN")
-app.extend(config={"oas": False})
+app.config.OAS = False
 app.static("/static/css", "./static/css", name="css")
 app.static("/static/images", "./static/images", name="images")
 
@@ -24,11 +25,10 @@ async def ping(request):
 
 
 @app.get("/")
-@app.ext.template("index.html")
 async def index(request):
     if not issue:
         return text("ZenHN will be back soon.", status=503)
-    return {"app": app, "issue": issue}
+    return await render("index.html", context={"app": app, "issue": issue})
 
 
 @app.get("/feed")
